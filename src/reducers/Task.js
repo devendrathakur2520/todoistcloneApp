@@ -5,7 +5,7 @@ const initialState = {
 }
 
 export default function Task(state = initialState, action) {
-  // console.log("dsfdsgds",action.payload);
+console.log("dsfdsgds",action.payload);
     switch (action.type) {
         case SET_TASKS:
             return {

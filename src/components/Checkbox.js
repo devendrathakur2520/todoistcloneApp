@@ -1,6 +1,6 @@
 import { firebase } from "../firebase";
 
-export const Checkbox = ({ id }) => {
+export const Checkbox = ({ id ,taskDesc}) => {
     const archiveTask = () => {
         firebase
             .firebase()
@@ -12,9 +12,18 @@ export const Checkbox = ({ id }) => {
     };
 
     return (
-        <div className="checkbox-holder" data-testid="checkbox-action"
-            onClick={() => archiveTask()}>
-            <span className="checkbox" />
-        </div>
+        <div
+        className="checkbox-holder"
+        data-testid="checkbox-action"
+        onClick={() => archiveTask()}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') archiveTask();
+        }}
+        aria-label={`Mark ${taskDesc} as done?`}
+        role="button"
+        tabIndex={0}
+      >
+        <span className="checkbox" />
+      </div>
     )
 }

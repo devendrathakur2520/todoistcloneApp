@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { selectedProjects } from "../action";
 import { useSelectedProjectsValue, useProjectsValue } from "../context";
+import { IndividualProject } from "./IndividualProject";
 
 export const Projects = ({ activeValue = null }) => {
 
+  const dispatch = useDispatch()
   const [active, setActive] = useState(activeValue);
   const { setSelectedProjects } = useSelectedProjectsValue();
   const { projects } = useProjectsValue();
-  console.log("dfhdhdskjfdlsfdsgfdsgdsghdsgdsfg", projects)
   return (
     <div>{
       projects &&
@@ -28,20 +31,21 @@ export const Projects = ({ activeValue = null }) => {
             aria-label={`Select ${project.name} as the task project`}
             onClick={() => {
               setActive(project.projectId);
-              setSelectedProject(project.projectId);
+              dispatch(selectedProjects(project.projectId));
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 setActive(project.projectId);
-                setSelectedProject(project.projectId);
+                dispatch(selectedProjects(project.projectId));
               }
             }}
           >
-            <IndividualProject project={project} />
+            { <IndividualProject project={project} /> }
           </div>
+          {JSON.stringify(projects)}
         </li>
       ))
-    }devendra
+    }
     </div>
   );
 };

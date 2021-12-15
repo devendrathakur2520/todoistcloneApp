@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { firebase } from "../firebase";
-import { collatedTasksExits } from '../helpers'
+import { collatedTasksExist } from '../helpers'
 import moment from "moment";
 import { useSelector, useDispatch } from 'react-redux'
 import { setArchivedTasks, setProjects, setTasks } from "../action";
 
 
-export const useTasks = (selectedproject) => {
+export const useTasks = selectedproject => {
     //const [tasks, setTask] = useState([]);
     //const [archivedTasks, setArchivedTasks] = useState([]);
 
@@ -17,14 +17,18 @@ export const useTasks = (selectedproject) => {
     useEffect(() => {
         let unsubscirbe = firebase.firestore()
             .collection('tasks')
-            .where('userId', '==', "vijay123");
+            .where('userId', '==', "admin@");
 
         unsubscirbe =
-            selectedproject && !collatedTasksExits(selectedproject)
+            selectedproject && !collatedTasksExist(selectedproject)
                 ? (unsubscirbe = unsubscirbe.where('projectId', '==', selectedproject))
-                : selectedproject === 'Today'
-                    ? (unsubscirbe = unsubscirbe.where('data', '==', moment().format('DD/MM/YYYY')))
-                    : selectedproject === 'INDOX' || selectedproject === 0
+                : selectedproject === 'TODAY'
+                    ? (unsubscirbe = unsubscirbe.where(
+                        'date',
+                        '==',
+                        moment().format('DD/MM/YYYY')
+                    ))
+                    : selectedproject === 'INBOX' || selectedproject === 0
                         ? (unsubscirbe = unsubscirbe.where('date', '==', ''))
                         : unsubscirbe;
 
@@ -53,16 +57,16 @@ export const useTasks = (selectedproject) => {
 
 
 export const useProjects = () => {
-    // const [projects, setProjects]= useState(null)
+    //const [projects, setProjects]= useState(null)
     const projects = useSelector((state) => state.Projects.setprojects)
 
-
+    console.log("rajaa", projects);
     const dispatch = useDispatch()
     useEffect(() => {
         firebase
             .firestore()
             .collection('projects')
-            .where('userId', '==', 'vijay123')
+            .where('userId', '==', 'admin@')
             .orderBy('projectId')
             .get()
             .then(snapshot => {
@@ -74,7 +78,7 @@ export const useProjects = () => {
                     dispatch(setProjects(allProjects))
                 }
             });
-    }, [projects])
+    }, [])
 
     return { projects };
 };
