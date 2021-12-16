@@ -1,7 +1,7 @@
 import { SET_SHOW_PROJECTS} from "../action";
 
 const initialState = {
-  showprojects: true,
+  showprojects: true
 }
 
 export default function showProjects(state = initialState, action) {

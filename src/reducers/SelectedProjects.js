@@ -5,11 +5,12 @@ const initialState = {
 }
 
 export default function SelectedProjects(state = initialState, action) {
+  console.log("selectedProject",state);
   switch (action.type) {
     case SELECTED_PROJECTS:
       return {
         ...state,
-        setprojects: action.payload,
+        selectedprojects: action.payload,
       }
 
     default:

@@ -10,9 +10,11 @@ export default function Header() {
                     <img src="/images/logo.png" alt="Todoist" />
                </div>
                <div className="setting">
-                    <ul>
-                        <li>+</li>
-                        <li><FaPizzaSlice /></li>
+                    <ul >
+                        <li className="header1">+</li>
+                    
+                        
+                        <li className="header1"><FaPizzaSlice /></li>
                     </ul>
                </div>
            </nav>

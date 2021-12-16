@@ -42,7 +42,6 @@ export const Projects = ({ activeValue = null }) => {
           >
             { <IndividualProject project={project} /> }
           </div>
-          {JSON.stringify(projects)}
         </li>
       ))
     }

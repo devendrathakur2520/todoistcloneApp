@@ -12,7 +12,7 @@ export const Tasks = () => {
     const { tasks } = useTasks(setSelectedprojects)
     console.log("tasks ", tasks);
     let projectName = '';
-
+    
     if (collatedTasksExist(setSelectedprojects) && setSelectedprojects) {
         projectName = getCollatedTitle(collatedTasks, setSelectedprojects).name;
         console.log('project1',projectName);
@@ -25,11 +25,11 @@ export const Tasks = () => {
     setSelectedprojects &&
     !collatedTasksExist(setSelectedprojects)
   ) {
+    
     projectName = getTitle(projects, setSelectedprojects).name;
-    console.log('project2',projectName)
-
+    //console.log('project2',projectName)
+    
   } ;
-
   useEffect(() => {
     document.title = `${projectName}: Todoist`;
   });

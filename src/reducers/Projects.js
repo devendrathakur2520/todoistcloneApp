@@ -5,6 +5,7 @@ const initialState = {
 }
 
 export default function Projects(state = initialState, action) {
+  console.log("setprojects",state);
   switch (action.type) {
     case SET_PROJECTS:
       return {

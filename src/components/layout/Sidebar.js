@@ -8,59 +8,18 @@ import {
 } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedProjects, setShowProjects } from '../../action';
-
 import { useSelectedProjectsValue } from '../../context'
+import { AddProjects } from '../AddProjects';
 import { Projects } from '../Projects';
 
 export const Sidebar = () => {
 
     const dispatch = useDispatch()
     const showProjects = useSelector(state => state.showProjects.showprojects)
-    const { setSelectedProjects } = useSelectedProjectsValue;
     const [active, setActive] = useState('inbox');
     //const [showProjects, setShowProjects] = useState(true)
+  
     return (
-        // <div className="sidebar" data-testid="sidebar">
-        //     <ul className="sidebar__generi">
-        //         <li
-        //         data-testid="inbox"
-        //         className={active === 'inbox' ? 'active' : undefined}
-
-        //         onClick={()=>{
-        //             setActive('inbox');
-        //             dispatch(selectedProjects("INBOX"))
-        //         }}
-        //         >
-        //             <span>
-        //                 <FaInbox />
-        //             </span>
-        //             <span>Indox</span>
-        //         </li>
-        //         <li>
-        //             <span>
-        //                 <FaRegCalendar />
-        //             </span>
-        //             <span>today</span>
-        //         </li>
-        //         <li>
-        //             <span>
-        //                 <FaCalendarAlt />
-        //             </span>
-        //             <span>Next 7 days</span>
-        //         </li>
-        //     </ul>
-        //     <div className='sidebar__middle'>
-        //         <span>
-        //             <FaChevronDown />
-        //         </span>
-        //         <h2>projects</h2>
-        //     </div>
-        //     <ul className="sidebar__projects">{showProjects && <Projects />}</ul>
-        //     {showProjects && <Projects />}
-        //     Add Project Component Here!!!!!!!!!!!!!!
-        // </div>
-
-
 
         <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
@@ -163,7 +122,7 @@ export const Sidebar = () => {
 
       <ul className="sidebar__projects">{showProjects && <Projects />}</ul>
 
-      {showProjects }
+      {showProjects && <AddProjects />}
     </div>
     )
 }

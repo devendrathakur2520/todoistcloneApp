@@ -11,6 +11,7 @@ export const useTasks = selectedproject => {
     //const [archivedTasks, setArchivedTasks] = useState([]);
 
     const tasks = useSelector((state) => state.Task.settask);
+    console.log("hoooks",tasks)
     const archivedTasks = useSelector((state) => state.setArchived.setarchived)
     const dispatch = useDispatch();
 
